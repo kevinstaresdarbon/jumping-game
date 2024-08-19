@@ -52,8 +52,6 @@ const renderArraytoPlayerArea = (arr5x5, height) => {
         _arr_to_draw.forEach( row => {
             player_buffer.push(row);
         });
-
-        console.log(player_buffer);
         return player_buffer;
     } else if ((height > 0) && (height < 5)){
         const pad_top = padXRows((5 - height));
@@ -70,8 +68,6 @@ const renderArraytoPlayerArea = (arr5x5, height) => {
         pad_bottom.forEach( row => {
             player_buffer.push(row);
         })
-
-        console.log(player_buffer);
         return player_buffer;
     } else if (height === 5){
 
@@ -85,7 +81,6 @@ const renderArraytoPlayerArea = (arr5x5, height) => {
             player_buffer.push(row);
         })
 
-        console.log(player_buffer);
         return player_buffer;
     };    
 }
@@ -98,7 +93,6 @@ const convertBufferToString = (arr10x5) => {
         output_string = output_string + row.join('') + "\n"
     })
 
-    console.log(output_string);
     return output_string;
 }
 
@@ -114,16 +108,16 @@ const renderStringToHTMLElement = (input_string, HTMLElement) => {
 
 let frame_counter = 0;
 
-const timing_arr = [0,1,2,3,3,4,4,4,5,5,5,4,4,4,4,3,3,2,1,0];
+const timing_arr = [0,1,2,3,3,4,4,4,5,5,5,4,4,4,4,3,3,2,1];
 
 // uncomment the lines below to see the little jumping man
-// setInterval(() => {
+setInterval(() => {
 
-//     const this_buffer = renderArraytoPlayerArea(man, timing_arr[frame_counter]);
-//     const display_string = convertBufferToString(this_buffer);
-//     renderStringToHTMLElement(display_string, $display); 
+    const this_buffer = renderArraytoPlayerArea(man, timing_arr[frame_counter]);
+    const display_string = convertBufferToString(this_buffer);
+    renderStringToHTMLElement(display_string, $display); 
 
-//     frame_counter++;
-//     frame_counter = frame_counter%(timing_arr.length);
+    frame_counter++;
+    frame_counter = frame_counter%(timing_arr.length);
 
-// }, 100, timing_arr)
+}, 100, timing_arr)
